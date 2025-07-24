@@ -17,17 +17,25 @@ return(
     <Swiper
       modules={[Scrollbar, Navigation ,Pagination]}
       spaceBetween={50}
-      slidesPerView={3}
-      scrollbar={{ draggable: true }}
-      pagination={{ clickable: true }}
-      navigation
-      >
+      slidesPerView={4}
+      pagination={{ type: 'custom' }}
+      navigation={{
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
 
+      }}
+      >
         {movieData.map((el) => (
           <SwiperSlide key ={el.id}>
             <MovieCard movie={el} />
           </SwiperSlide>
         ))}
+        <div className='swiper-button-prev'>
+          <p>이전</p>
+        </div>
+        <div className='swiper-button-next'>
+          <p>다음</p>
+        </div>
       </Swiper>
 
   </>
