@@ -21,8 +21,13 @@ export default function Detail() {
               <p className="text-6xl">{movieDetail.title}</p>
               <p className="text-4xl">⭐️: {movieDetail.vote_average? movieDetail.vote_average.toFixed(1): ""}</p>
             </div>
-            <p className="flex-1 border-b"> 장르: {movieDetail.genres? movieDetail.genres.map((el)=>el.name + "/ ") : ""}</p>
-            <p className="flex-4">{movieDetail.overview}</p>
+
+            <div className="flex-1 boredr-b border-white">
+              <p> 상영시간: {movieDetail.runtime}분</p>
+              <p> 장르: {movieDetail.genres? movieDetail.genres.map((el)=>el.name + "/ ") : ""}</p>
+            </div>
+
+            <p className="border-t flex-4">{movieDetail.overview}</p>
           </div>
         </div>
       </div>

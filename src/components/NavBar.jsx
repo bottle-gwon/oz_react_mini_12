@@ -8,8 +8,8 @@ export default function NavBar() {
       <input placeholder="검색" className="text-black grow mx-[100px] border border-solid border-black rounded-xl bg-white pl-2"/>
 
       <div>
-        <button className="px-[4px]">로그인</button>
-        <button className="px-[4px]">회원가입</button>
+        <button className="px-[4px] mr-0.5 border bg-purple-500 rounded-[10px]">로그인</button>
+        <button className="px-[4px] ml-0.5  border bg-purple-500 rounded-[10px]">회원가입</button>
       </div>
     </nav>
   )
