@@ -5,9 +5,9 @@ import NavBar from "./NavBar";
 export default function Layout() {
   return (
       <div className="flex flex-col h-dvh">
-        <NavBar className=""/>
+        <NavBar />
         <main>
-          <Outlet className="grow"/>
+          <Outlet />
         </main>
       </div>
   )
