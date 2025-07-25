@@ -1,17 +1,47 @@
-import { MovieCard } from '../components/MoviCard'
 import listData from '../../data/movieListData.json'
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { SwiperSlide,Swiper } from 'swiper/react'
 import { Navigation, Pagination, Scrollbar } from 'swiper/modules'
 import 'swiper/css';
 import './pagination.css'
+import { MovieCard } from '../components/MovieCard';
+
 
 export default function Main() {
   const [movieData, setMovieData] = useState([])
 
+
+  const options = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer ' + import.meta.env.TMDB_READ_API
+  }
+};
+
   useEffect(()=>{
-    setMovieData(listData.results);
+    // setMovieData(listData.results);
+    const fetchMovie = async () => {
+      try{
+        const dataResponse = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+        if(!dataResponse.ok){
+          throw new Error(`data loading fail`)
+        }
+        const data  = await dataResponse.json();
+        console.log(data.results)
+        setMovieData(data.results.filter((el) => !el.adult));
+
+      } catch(e){
+        console.error(e);
+      }
+    }
+    fetchMovie()
   },[])
+
+
+  
+
+
 
 return(
   <>
@@ -22,18 +52,22 @@ return(
       pagination={{ clickable: true,
           el: '.swiper-pagination-container',
        }}
-       
+
       navigation={{
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       
       }}
       >
-        {movieData.map((el) => (
-          <SwiperSlide key ={el.id}>
-            <MovieCard movie={el} />
-          </SwiperSlide>
-        ))}
+        
+          {movieData.map((el) => {
+            console.log(el);
+            return (
+            <SwiperSlide key ={el.id}>
+              <MovieCard movie={el} />
+            </SwiperSlide>
+          )})}
+
         <div className='swiper-button-prev absolute top-1/2 left-3 z-10 select-none hover:drop-shadow-xl hover:drop-shadow-[rgba(0,0,0,0.5)]  hover:scale-[1.5] duration-[0.15s] border bg-indigo-300 rounded-2xl px-1'>
           <p className='text-3xl'>이전</p>
         </div>
