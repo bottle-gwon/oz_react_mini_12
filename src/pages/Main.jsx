@@ -15,7 +15,7 @@ export default function Main() {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer ' + import.meta.env.TMDB_READ_API
+    Authorization: 'Bearer ' + import.meta.env.VITE_TMDB_READ_API
   }
 };
 
@@ -23,7 +23,7 @@ export default function Main() {
     // setMovieData(listData.results);
     const fetchMovie = async () => {
       try{
-        const dataResponse = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+        const dataResponse = await fetch('https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1', options)
         if(!dataResponse.ok){
           throw new Error(`data loading fail`)
         }
