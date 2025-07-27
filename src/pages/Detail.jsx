@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { Suspense, useEffect, useState } from "react";
 import DetailCard from "../components/DetailCard";
 import SkeletonDetail from "../skeleton/SkeletonDetail";
+import ErrorDetail from "../error/ErrorDetail";
 
 
 
@@ -44,7 +45,9 @@ export default function Detail() {
 
   return(
     <>
-      {!isLoading ? <DetailCard movieDetail={movieDetail} /> : <SkeletonDetail />   }
+      { 
+      loadError ? (<ErrorDetail />) :
+      !isLoading ? <DetailCard movieDetail={movieDetail} /> : <SkeletonDetail />   }
     </>
   )
 }

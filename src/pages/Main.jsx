@@ -49,7 +49,9 @@ export default function Main() {
 
 return(
   <>
-    {isLoading ? <SkeletonSlide /> : 
+    {
+    error ? (<div>에러 발생</div>) :
+    isLoading ? <SkeletonSlide /> : 
       <Swiper
         modules={[Scrollbar, Navigation ,Pagination]}
         spaceBetween={0}
