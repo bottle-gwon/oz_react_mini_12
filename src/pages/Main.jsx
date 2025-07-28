@@ -13,12 +13,12 @@ export default function Main() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false)
   const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer ' + import.meta.env.VITE_TMDB_READ_API
-  }
-};
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer ' + import.meta.env.VITE_TMDB_READ_API
+    }
+  };
 
   useEffect(()=>{
     // setMovieData(listData.results);
