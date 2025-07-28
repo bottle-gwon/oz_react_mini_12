@@ -49,13 +49,14 @@ export default function Main() {
 
 return(
   <>
+
     {
     error ? (<div>에러 발생</div>) :
     isLoading ? <SkeletonSlide /> : 
       <Swiper
         modules={[Scrollbar, Navigation ,Pagination]}
         spaceBetween={0}
-        slidesPerView={4}
+        slidesPerView={2}
         pagination={{ clickable: true,
             el: '.swiper-pagination-container',
         }}
@@ -65,6 +66,19 @@ return(
           prevEl: '.swiper-button-prev'
         
         }}
+
+        breakpoints={{
+          630: {
+            slidesPerView: 3
+          },
+          768: {
+            slidesPerView: 3
+          },
+          1024: {
+            slidesPerView: 4
+          }
+
+      }}  
         >
           
             {movieData.map((el) => {
@@ -76,10 +90,10 @@ return(
             )})}
 
           <div className='swiper-button-prev absolute top-1/2 left-3 z-10 select-none hover:drop-shadow-xl hover:drop-shadow-[rgba(0,0,0,0.5)]  hover:scale-[1.5] duration-[0.15s] border bg-indigo-300 rounded-2xl px-1'>
-            <p className='text-3xl'>이전</p>
+            <p className='text-3xl'>{'<'}</p>
           </div>
           <div className='swiper-button-next absolute top-1/2 right-3 z-10 select-none hover:drop-shadow-xl hover:drop-shadow-[rgba(0,0,0,0.5)]  hover:scale-[1.5] duration-[0.15s] border bg-indigo-300 rounded-2xl px-1'>
-            <p className='text-3xl'>다음</p>
+            <p className='text-3xl'>{'>'}</p>
           </div>
           <div className='flex justify-center'>
             <div className="flex swiper-pagination-container absolute bottom-0 z-10"></div> 

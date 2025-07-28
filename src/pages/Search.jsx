@@ -49,7 +49,7 @@ export default function Search() {
         {
         searchError? <div>오류 발생</div>:
         isLoading? <SkeletonSlide /> : result.map((el)=>
-        <div className="w-1/4">
+        <div className="w-1/2 sm:w-1/3 md:w-1/4">
           <MovieCard movie={el}/>
         </div>
         )  }
