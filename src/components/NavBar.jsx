@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDebounce } from "../hooks/useDebounce";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleMode } from "../RTK/slice";
 
 export default function NavBar() {
   const [searchParams, setSearchParams] = useState('');
+  const dispatch = useDispatch();
+  const currentBgMode = useSelector((state)=> state.bg)
   const searchHandler = (e) =>{
     setSearchParams(e.target.value)
     console.log(searchParams)
@@ -20,6 +24,9 @@ export default function NavBar() {
       md:mx-[100px] md:w-5"/>
 
       <div>
+        <button onClick={() => dispatch(toggleMode())} className="mr-2">
+          {currentBgMode === 'light'?'🌙' : '☀️'}
+        </button>
         <button className="px-[4px] mt-2 mr-0.5 border bg-purple-500 rounded-[10px]">로그인</button>
         <button className="px-[4px] ml-0.5  border bg-purple-500 rounded-[10px]">회원가입</button>
       </div>

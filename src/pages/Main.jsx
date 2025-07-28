@@ -1,4 +1,3 @@
-import listData from '../../data/movieListData.json'
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { SwiperSlide,Swiper } from 'swiper/react'
 import { Navigation, Pagination, Scrollbar } from 'swiper/modules'
