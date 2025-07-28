@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDebounce } from "../hooks/useDebounce";
 
 export default function NavBar() {
   const [searchParams, setSearchParams] = useState('');
@@ -8,15 +9,8 @@ export default function NavBar() {
     setSearchParams(e.target.value)
     console.log(searchParams)
   }
-  useEffect(() =>{
-    const debounderTimer = setTimeout(()=>{
-    searchParams === '' ? null : navigate(`/search?movie=${searchParams}`)
-
-    },1000)
-
-    return () => clearTimeout(debounderTimer)
-  },[searchParams])
-
+  
+  useDebounce({searchParams:searchParams, delay: 1000})
   return(
     <nav className="flex justify-around px-[20px] py-[10px]">
       <Link to={'/'} className="text-4xl">영화 미니 프로젝트</Link>
