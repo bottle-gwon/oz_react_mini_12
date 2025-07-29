@@ -1,5 +1,9 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSupabaseAuth } from "../supabase";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginSucess } from "../RTK/slice";
 
 
 
@@ -9,9 +13,35 @@ export default function Login() {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const [loginData, setLoginData] = useState({});
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const onSubmit = (data) =>{
-    alert(JSON.stringify(data))
+    // alert(JSON.stringify(data))
+    setLoginData(data)
   }
+
+  useEffect(()=>{
+      const response = async () =>{
+        const res = await login({email: loginData.email, password: loginData.password});
+        if(res.user){
+          dispatch(loginSucess(res.user))
+          navigate('/')
+        }
+        else if(res.error){
+          alert(res.error.message);
+        }
+      }
+
+    if(Object.keys(loginData).length !==0){
+      response()
+    }
+    
+    
+  },[loginData])
+
+  const { login } = useSupabaseAuth();
+
   return(
     <div className="flex h-dvh justify-center sm:items-center">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col sm:border rounded-2xl p-2 w-[350px] h-[300px">

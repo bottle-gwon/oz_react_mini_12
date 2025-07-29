@@ -1,4 +1,6 @@
 import { useForm } from "react-hook-form";
+import { useSupabaseAuth } from "../supabase";
+import { useNavigate } from "react-router-dom";
 
 
 export default function SignUp() {
@@ -8,8 +10,11 @@ export default function SignUp() {
       handleSubmit,
       getValues,
     } = useForm();
-    const onSubmit = (data) =>{
-    alert(JSON.stringify(data))
+  const { signUp } = useSupabaseAuth();
+  const navigate = useNavigate()
+  const onSubmit = (data) =>{
+  alert(JSON.stringify(data))
+  signUp({email: data.email, password: data.password, userData: data.name })&&navigate('/login');
   }
 
   return(
