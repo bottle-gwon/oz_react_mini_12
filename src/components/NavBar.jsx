@@ -27,8 +27,9 @@ export default function NavBar() {
         <button onClick={() => dispatch(toggleMode())} className="mr-2">
           {currentBgMode === 'light'?'🌙' : '☀️'}
         </button>
-        <button className="px-[4px] mt-2 mr-0.5 border bg-purple-500 rounded-[10px]">로그인</button>
-        <button className="px-[4px] ml-0.5  border bg-purple-500 rounded-[10px]">회원가입</button>
+        <Link to={'/Login'} className="px-[4px] mt-2 mr-0.5 border bg-purple-500 rounded-[10px]">로그인</Link>
+        <Link to={'/SignUp'} className="px-[4px] mt-2 mr-0.5 border bg-purple-500 rounded-[10px]">회원가입</Link>
+
       </div>
     </nav>
   )

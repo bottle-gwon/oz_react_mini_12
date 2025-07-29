@@ -4,6 +4,8 @@ import Layout from './components/Layout'
 import { lazy, Suspense } from 'react'
 import SkeletonRoot from './skeleton/SkeletonRoot'
 import Search from './pages/Search'
+import Login from './pages/Login'
+import SignUp from './pages/SignUp'
 const Main = lazy(() => import('./pages/Main'))
 const Detail = lazy(() => import('./pages/Detail'))
 
@@ -18,6 +20,8 @@ function App() {
             <Route index element={<Main />}/>
             <Route path='/detail/:movieId' element={<Detail />}/>
             <Route path={'/search'} element={ <Search /> }/>
+            <Route path={'/Login'} element={<Login />} />
+            <Route path={'/SignUp'} element={<SignUp />} />
           </Route>
         </Routes>
       </Suspense>
