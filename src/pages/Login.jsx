@@ -7,10 +7,10 @@ export default function Login() {
       <form className="flex flex-col sm:border rounded-2xl p-2 w-[350px] h-[300px]">
         <h1 className="text-3xl">Login</h1>
         <br/>
-        <label htmlFor='email' required autoFocus>이메일</label>
-        <input type="emial" id='email' className="border"/>
-        <label htmlFor='password' >비밀번호</label>
-        <input type="password" id="password" className="border"/>
+
+        <input type="emial" id='email' placeholder="   이메일" className="border"/>
+
+        <input type="password" id="password" placeholder="   비밀번호" className="border"/>
         <br />
        
         <button type="submit" className="border">로그인</button>
