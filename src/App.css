@@ -41,7 +41,9 @@
   color: #888;
 } */
 
-
+html, body{
+  background-color: black;
+}
 #root {
   background-color: black;
   color: white;

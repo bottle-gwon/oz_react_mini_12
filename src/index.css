@@ -1,2 +1,8 @@
 @import "tailwindcss";
 
+/* 브레이크 포인트 재설정 아이패드 미니가 768px이라 적용이 안되 변경함 */
+@theme{
+  --breakpoint-sm: 641px;
+  --breakpoint-md:769px;
+  --breakpoint-lg:1025px;
+}
