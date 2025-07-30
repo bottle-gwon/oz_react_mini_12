@@ -84,6 +84,7 @@ return(
           modules={[Scrollbar, Navigation ,Pagination]}
           spaceBetween={0}
           slidesPerView={2}
+          slidesPerGroup={2}
           pagination={{ clickable: true,
               el: '.swiper-pagination-container',
           }}
@@ -96,13 +97,17 @@ return(
 
           breakpoints={{
             630: {
-              slidesPerView: 3
+              slidesPerView: 3,
+              slidesPerGroup: 3,
             },
             768: {
-              slidesPerView: 3
+              slidesPerView: 3,
+              slidesPerGroup: 3,
+
             },
             1024: {
-              slidesPerView: 4
+              slidesPerView: 4,
+              slidesPerGroup: 4,            
             }
 
         }} 

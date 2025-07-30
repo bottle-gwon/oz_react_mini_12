@@ -19,7 +19,7 @@ export default function SignUp() {
 
   return(
     <div className="flex h-dvh justify-center sm:items-center">
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col sm:border rounded-2xl p-2 w-[350px] h-[300px]">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col sm:border rounded-2xl p-2 w-[350px] h-[500px]">
         <h1 className="text-3xl">회원가입</h1>
 
 
@@ -30,7 +30,8 @@ export default function SignUp() {
           message: '올바른 이메일을 입력해 주세요.'} })} type="email" id="email" className="border"/>
         {errors.email?.message && (
           <p>{errors.email?.message}</p>
-        )}
+          
+        ) || <br />}
 
 
         <label htmlFor='name'>이름</label>
@@ -50,7 +51,10 @@ export default function SignUp() {
 
         })}
         id='name' className="border"/>
-        {errors.name?.message}
+        {errors.name?.message && (
+          <p>{errors.name?.message}</p>
+          
+        ) || <br />}
 
 
         <label htmlFor='password'>비밀번호</label>
@@ -70,7 +74,10 @@ export default function SignUp() {
         )} className="border"
         type="password"
         />
-        {errors.password?.message}
+        {errors.password?.message && (
+          <p>{errors.password?.message}</p>
+          
+        ) || <br />}
 
         <label htmlFor='rePassword'>비밀번호 재입력</label>
         <input {...register("passwordCheck",{required: true,
@@ -81,7 +88,10 @@ export default function SignUp() {
           
 
         })} type="password" id="rePassword" className="border"/>
-        {errors.passwordCheck?.message}
+        {errors.passwordCheck?.message && (
+          <p>{errors.passwordCheck?.message}</p>
+          
+        ) || <br />}
         {console.log(errors)}
         <br />
 

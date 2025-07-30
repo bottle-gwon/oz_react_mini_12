@@ -21,16 +21,21 @@ export default function Login() {
     setLoginData(data)
   }
 
+  // 로그인 valid 데이터를 받아오는동안 로딩창을 만들어두자
   useEffect(()=>{
       const response = async () =>{
-        const res = await login({email: loginData.email, password: loginData.password});
-        if(res.user){
+        try{
+          const res = await login({email: loginData.email, password: loginData.password});
+          if(res.error){
+            throw new Error(`login fail`)
+          }
           dispatch(loginSucess(res.user))
           navigate('/')
+        }catch(e){
+          alert(e.message);
+          console.error(e)
         }
-        else if(res.error){
-          alert(res.error.message);
-        }
+        
       }
 
     if(Object.keys(loginData).length !==0){
@@ -50,10 +55,10 @@ export default function Login() {
         <input {...register("email",{required: true, 
         pattern:{ 
           value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-          message: '올바른 이메일을 입력해 주세요.'} })} type="email" className="border"/>
+          message: '올바른 이메일을 입력해 주세요.'} })} type="email" className="border" placeholder="Email"/>
         {errors.email?.message && (
           <p>{errors.email?.message}</p>
-        )}
+        ) || <br /> }
         {console.log(errors)}
 
         <input {...register("password",{required: true,
@@ -70,9 +75,12 @@ export default function Login() {
         }
         )} className="border"
         type="password"
+        placeholder="Password"
         />
-        {errors.password?.message}
-        <br />
+        {errors.password?.message &&
+        <p> {errors.password?.message} </p> 
+         || <br /> }
+        
        
         <button type="submit" className="border">로그인</button>
         <Link to={"/SignUp"} className="border mt-2 text-center">회원가입</Link>
