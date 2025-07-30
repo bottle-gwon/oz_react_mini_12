@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { useSupabaseAuth } from "../supabase";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoutSuccess } from "../RTK/slice";
 
 
@@ -11,6 +11,7 @@ export default function ProfileDropdown() {
   const handleDropDown = () =>{
     setIsOpen(!isOpen);
   }
+  const imgURL = useSelector((state) => state.login)
   const {logout} = useSupabaseAuth();
   const navigate = useNavigate()
   const handleLogoutButton = () => {
@@ -21,7 +22,7 @@ export default function ProfileDropdown() {
   return(
     <div className="relative">
       <button onClick={handleDropDown}>
-        <img src="https://cdn-icons-png.flaticon.com/512/12225/12225935.png" className="w-8"/>
+        <img src={imgURL.profileImageUrl} className="w-8 rounded-full" alt="profile"/>
       </button>
 
       {/* 드롭다운 메뉴 */}
