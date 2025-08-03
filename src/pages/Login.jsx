@@ -55,7 +55,7 @@ export default function Login() {
         <input {...register("email",{required: true, 
         pattern:{ 
           value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-          message: '올바른 이메일을 입력해 주세요.'} })} type="email" className="border" placeholder="Email"/>
+          message: '올바른 이메일을 입력해 주세요.'} })} type="email" className="border placeholder-gray-400" placeholder="Email"/>
         {errors.email?.message && (
           <p>{errors.email?.message}</p>
         ) || <br /> }
@@ -73,7 +73,7 @@ export default function Login() {
             message:'영어, 숫자 조합을 사용해야 합니다.'
           }
         }
-        )} className="border"
+        )} className="border placeholder-gray-400"
         type="password"
         placeholder="Password"
         />

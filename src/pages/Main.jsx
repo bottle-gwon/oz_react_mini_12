@@ -73,9 +73,9 @@ export default function Main() {
 
 
 return(
-  <>
-    <div className='border border-gray-500 rounded-2xl shadow-2xl  py-2 px-2.5'>
-      <h2 className='text-4xl'>현재 인기 있는 영화</h2>
+  <div className='bg-white dark:bg-black delay-100 duration-300'>
+    <div className='border border-gray-500 bg-white rounded-2xl shadow-2xl py-2 px-2.5 dark:bg-black delay-100 duration-300'>
+      <h2 className='text-4xl text-black dark:text-white delay-100 duration-300'>현재 인기 있는 영화</h2>
 
       {
       error ? (<div>에러 발생</div>) :
@@ -111,20 +111,20 @@ return(
             }
 
         }} 
-          >
+          > 
               {movieData.map((el) => {
                 console.log(el);
                 return (
-                <SwiperSlide key ={el.id}>
+                <SwiperSlide key ={el.id} >
                   <MovieCard movie={el} />
                 </SwiperSlide>
               )})}
 
             <div className='swiper-button-prev absolute top-1/2 left-0.5 z-10 select-none hover:drop-shadow-xl hover:drop-shadow-[rgba(0,0,0,0.5)]  hover:scale-[1.5] duration-[0.15s] border border-gray-600  rounded-2xl px-1'>
-              <p className='text-5xl'>{'<'}</p>
+              <p className='text-5xl text-gray-400 dark:text-white delay-100 duration-300'>{'<'}</p>
             </div>
             <div className='swiper-button-next absolute top-1/2 right-0.5 z-10 select-none hover:drop-shadow-xl hover:drop-shadow-[rgba(0,0,0,0.5)]  hover:scale-[1.5] duration-[0.15s] border border-gray-600 rounded-2xl px-1'>
-              <p className='text-5xl'>{'>'}</p>
+              <p className='text-5xl text-gray-400 dark:text-white delay-100 duration-300'>{'>'}</p>
             </div>
             <div className='flex justify-center'>
               <div className="flex swiper-pagination-container absolute bottom-0 z-10"></div> 
@@ -136,8 +136,8 @@ return(
     </div>
 
     <div className='mt-6'>
-      <h2 className='text-4xl'>최신 영화</h2>
-      <div className="flex flex-wrap bg-black">
+      <h2 className='text-4xl text-black dark:text-white delay-100 duration-300'>최신 영화</h2>
+      <div className="flex flex-wrap delay-100 duration-300 bg-white dark:bg-black">
         
 
         {
@@ -152,7 +152,7 @@ return(
       </div>
     </div>
 
-  </>
+  </div>
 )
 
 }

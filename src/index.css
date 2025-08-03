@@ -6,3 +6,13 @@
   --breakpoint-md:769px;
   --breakpoint-lg:1025px;
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+html, body{
+  @apply bg-white dark:bg-black delay-100 duration-300;
+}
+#root {
+  @apply bg-white text-black  dark:bg-black dark:text-white delay-100 duration-300;
+}
+/* @custom-variant dark (&:where(.[data-theme=dark], [data-theme=dark]  *)); */
