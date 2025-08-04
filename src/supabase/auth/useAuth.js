@@ -45,7 +45,9 @@ export const useAuth = () => {
           setItemToLocalStorage(USER_INFO_KEY.customKey, userInfo);
         }
         return userInfo;
-      } catch (error) {}
+      } catch (error) {
+        console.error(error)
+      }
     }
   };
   return { logout, getUserInfo };

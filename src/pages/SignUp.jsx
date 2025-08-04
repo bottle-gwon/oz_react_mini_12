@@ -19,34 +19,34 @@ export default function SignUp() {
 
   return(
     <div className="flex h-dvh justify-center sm:items-center">
+
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col sm:border rounded-2xl p-2 w-[350px] h-[500px]">
         <h1 className="text-3xl">회원가입</h1>
-
-
-        <label htmlFor='email'>이메일</label>
+        <label htmlFor='email'>이메일 <span className="text-[0.7rem] text-gray-600 dark:text-white delay-100 duration-300">※올바른 이메일 형식 사용</span></label>
         <input {...register("email",{required: true, 
         pattern:{ 
           value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-          message: '올바른 이메일을 입력해 주세요.'} })} type="email" id="email" className="border"/>
+          message: <span className="text-red-600 text-[0.8rem]">올바른 이메일을 입력해 주세요.</span>} })} 
+          type="email" id="email" className="border"/>
         {errors.email?.message && (
           <p>{errors.email?.message}</p>
           
         ) || <br />}
 
 
-        <label htmlFor='name'>이름</label>
+        <label htmlFor='name'>이름 <span className="text-[0.7rem] text-gray-600 dark:text-white delay-100 duration-300">※2~8글자 사이 한글,숫자,영어만 사용</span></label>
         <input {...register("name",{required: true,
           minLength: {
             value:2,
-            message:"너무 짧습니다. 2~8자 사이 숫자, 한글, 영어를 사용해주세요."
+            message: <span className="text-red-600 text-[0.8rem]">너무 짧습니다. 2~8자 사이 숫자, 한글, 영어를 사용해주세요.</span>
           },
           maxLength: {
             value:8,
-            message:"너무 깁니다. 2~8자 사이 숫자, 한글, 영어를 사용해주세요."
+            message: <span className="text-red-600 text-[0.8rem]">너무 깁니다. 2~8자 사이 숫자, 한글, 영어를 사용해주세요.</span>
           },
           pattern: {
             value: /^[ㄱ-ㅎ가-힣a-zA-Z0-9]*$/,
-            message:"숫자, 한글, 영어만 사용해 주세요."
+            message: <span className="text-red-600 text-[0.8rem]">숫자, 한글, 영어만 사용해 주세요.</span>
           }
 
         })}
@@ -57,18 +57,18 @@ export default function SignUp() {
         ) || <br />}
 
 
-        <label htmlFor='password'>비밀번호</label>
+        <label htmlFor='password'>비밀번호 <span className="text-[0.7rem] text-gray-600 dark:text-white delay-100 duration-300">※8~25글자 사이 영어 대문자/소문자, 숫자 조합 사용 </span></label>
         <input {...register("password",{required: true,
           minLength: {
             value:8,
-            message:'너무 짧습니다. 8자리 이상 입력해 주세요.'
+            message: <span className="text-red-600 text-[0.8rem]">너무 짧습니다. 8자리 이상 입력해 주세요.</span>
           }, maxLength: {
             value:25,
-            message:'너무 깁니다. 25자리 이하로 입력해주세요.'
+            message: <span className="text-red-600 text-[0.8rem]">너무 깁니다. 25자리 이하로 입력해주세요.</span>
           },
           pattern:{
             value: /^[a-zA-Z0-9]*$/,
-            message:'영어, 숫자 조합을 사용해야 합니다.'
+            message: <span className="text-red-600 text-[0.8rem]">영어, 숫자 조합을 사용해야 합니다.</span>
           }
         }
         )} className="border"
@@ -89,7 +89,7 @@ export default function SignUp() {
 
         })} type="password" id="rePassword" className="border"/>
         {errors.passwordCheck?.message && (
-          <p>{errors.passwordCheck?.message}</p>
+          <p className="text-red-600 text-[0.8rem] mt-0.5">{errors.passwordCheck?.message}</p>
           
         ) || <br />}
         {console.log(errors)}
