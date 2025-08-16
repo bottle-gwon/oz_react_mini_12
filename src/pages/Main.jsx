@@ -5,6 +5,7 @@ import 'swiper/css';
 import './pagination.css'
 import { MovieCard } from '../components/MovieCard';
 import SkeletonSlide from '../skeleton/SkeletonSlide';
+import TopMovies from '../components/TopMovies';
 
 
 export default function Main() {
@@ -12,9 +13,7 @@ export default function Main() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false)
 
-  const [topData, setTopData] = useState([]);
-  const [listIsLoading, setListIsLoading] = useState(true);
-  const [listError, setListError] = useState(false)
+
 
   const options = {
     method: 'GET',
@@ -44,30 +43,6 @@ export default function Main() {
       }
     }
     fetchMovie()
-  },[])
-
-
-  useEffect(()=>{
-    const fetchTopData = async() =>{
-      try{
-        const topDataResponse = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=ko-KR&page=1', options)
-        if(!topDataResponse.ok){
-          throw new Error(`top data list loading fail`)
-        }
-        const topData = await topDataResponse.json();
-
-        setTopData(topData.results.filter((el) => !el.adult))
-      }
-      catch(e){
-        console.error(e);
-        setListError(true);
-      }finally{
-        setListIsLoading(false);
-      }
-
-  }
-
-  fetchTopData()
   },[])
 
 
@@ -135,22 +110,7 @@ return(
 
     </div>
 
-    <div className='mt-6'>
-      <h2 className='text-4xl text-black dark:text-white delay-100 duration-300'>최신 영화</h2>
-      <div className="flex flex-wrap delay-100 duration-300 bg-white dark:bg-black">
-        
-
-        {
-          listError ? (<div>에러 발생</div>) :
-          listIsLoading ? <SkeletonSlide /> : topData.map((el)=>
-            <div className="w-1/2 sm:w-1/3 md:w-1/4">
-              <MovieCard movie={el}/>
-            </div>
-            )
-
-        }
-      </div>
-    </div>
+    <TopMovies options={options} />
 
   </div>
 )
